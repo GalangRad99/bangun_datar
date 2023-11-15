@@ -1,12 +1,13 @@
 import 'package:bangun_datar_app/controller/panjang_controller.dart';
 import 'package:bangun_datar_app/controller/persegi_controller.dart';
+import 'package:bangun_datar_app/controller/segitiga_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PanjangPage extends StatelessWidget {
-  PanjangPage({super.key});
+class SegitigaPage extends StatelessWidget {
+  SegitigaPage({super.key});
 
-  final PanjangController _panjangController = Get.put(PanjangController());
+  final SegitigaController _segitigaController = Get.put(SegitigaController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +16,33 @@ class PanjangPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.green.shade300,
         title: Text(
-          "Persegi Panjang Page",
+          "Segitiga Page",
           style: TextStyle(color: Colors.white),
         ),
       ),
       body: Column(
         children: [
-          Image.asset("assets/panjang.png", height: 100),
+          Image.asset("assets/segitiga.png", height: 100),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 16),
-            child: Text("Persegi Panjang"),
+            child: Text("Segitiga"),
           ),
           Text(
-              "Persegi panjang adalah bangun datar dua dimensi yang dibentuk oleh dua pasang sisi yang masing-masing sama panjang dan sejajar dengan pasangannya, dan memiliki empat buah sudut yang kesemuanya adalah sudut siku-siku."),
+              "Sebuah segitiga adalah poligon dengan tiga ujung dan tiga simpul. Ini adalah salah satu bentuk dasar dalam geometri. Segitiga dengan simpul A, B, dan C dilambangkan. Dalam geometri Euclidean, setiap tiga titik, ketika non-collinear, menentukan segitiga unik dan sekaligus, sebuah bidang unik"),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               onChanged: (value) {
-                _panjangController.panjang = int.parse(value);
+                _segitigaController.alas = int.parse(value);
               },
               decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
-                  labelText: "Panjang",
-                  hintText: "Masukkan Panjang",
+                  labelText: "Alas",
+                  hintText: "Masukkan Alas",
                   hintStyle: TextStyle(color: Colors.grey.shade400),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                  EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(width: 1, color: Colors.grey),
                       borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -57,13 +58,13 @@ class PanjangPage extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               onChanged: (value) {
-                _panjangController.lebar = int.parse(value);
+                _segitigaController.tinggi = int.parse(value);
               },
               decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
-                  labelText: "Lebar",
-                  hintText: "Masukkan Lebar",
+                  labelText: "Tinggi",
+                  hintText: "Masukkan Tinggi",
                   hintStyle: TextStyle(color: Colors.grey.shade400),
                   contentPadding:
                   EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -89,7 +90,7 @@ class PanjangPage extends StatelessWidget {
                         foregroundColor: Colors.white, // text color
                         backgroundColor: Colors.redAccent),
                     onPressed: () {
-                      _panjangController.hitungLuas();
+                      _segitigaController.hitungLuas();
                     },
                     child: Text("Hitung Luas")),
               ),
@@ -98,16 +99,16 @@ class PanjangPage extends StatelessWidget {
                       foregroundColor: Colors.white, // text color
                       backgroundColor: Colors.blueAccent),
                   onPressed: () {
-                    _panjangController.hitungKeliling();
+                    _segitigaController.hitungKeliling();
                   },
                   child: Text("Hitung Keliling")),
             ],
           ),
           Obx(
-            () => Text(
-              _panjangController.hasil.value,
+                () => Text(
+              _segitigaController.hasil.value,
               style: TextStyle(
-                color: _panjangController.isHitungLuas.value
+                color: _segitigaController.isHitungLuas.value
                     ? Colors.blue
                     : Colors.deepPurpleAccent,
               ),

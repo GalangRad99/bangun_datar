@@ -1,12 +1,13 @@
+import 'package:bangun_datar_app/controller/lingkaran_controller.dart';
 import 'package:bangun_datar_app/controller/panjang_controller.dart';
 import 'package:bangun_datar_app/controller/persegi_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PanjangPage extends StatelessWidget {
-  PanjangPage({super.key});
+class LingkaranPage extends StatelessWidget {
+  LingkaranPage({super.key});
 
-  final PanjangController _panjangController = Get.put(PanjangController());
+  final LingkaranController _lingkaranController = Get.put(LingkaranController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,55 +16,30 @@ class PanjangPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.green.shade300,
         title: Text(
-          "Persegi Panjang Page",
+          "Lingkarang Page",
           style: TextStyle(color: Colors.white),
         ),
       ),
       body: Column(
         children: [
-          Image.asset("assets/panjang.png", height: 100),
+          Image.asset("assets/lingkaran.png", height: 100),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 16),
-            child: Text("Persegi Panjang"),
+            child: Text("Lingkaran"),
           ),
           Text(
-              "Persegi panjang adalah bangun datar dua dimensi yang dibentuk oleh dua pasang sisi yang masing-masing sama panjang dan sejajar dengan pasangannya, dan memiliki empat buah sudut yang kesemuanya adalah sudut siku-siku."),
+              "Lingkaran adalah bentuk yang terdiri dari semua titik dalam bidang yang berjarak tertentu dari titik tertentu, pusat; ekuivalennya adalah kurva yang dilacak oleh titik yang bergerak dalam bidang sehingga jaraknya dari titik tertentu adalah konstan."),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               onChanged: (value) {
-                _panjangController.panjang = int.parse(value);
+                _lingkaranController.jari = int.parse(value);
               },
               decoration: InputDecoration(
                   fillColor: Colors.white,
                   filled: true,
-                  labelText: "Panjang",
-                  hintText: "Masukkan Panjang",
-                  hintStyle: TextStyle(color: Colors.grey.shade400),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 1, color: Colors.blue),
-                      borderRadius: BorderRadius.all(Radius.circular(10)))),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextFormField(
-              onChanged: (value) {
-                _panjangController.lebar = int.parse(value);
-              },
-              decoration: InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  labelText: "Lebar",
-                  hintText: "Masukkan Lebar",
+                  labelText: "Jari-Jari",
+                  hintText: "Masukkan Jari-Jari",
                   hintStyle: TextStyle(color: Colors.grey.shade400),
                   contentPadding:
                   EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -77,7 +53,6 @@ class PanjangPage extends StatelessWidget {
                       borderSide: BorderSide(width: 1, color: Colors.blue),
                       borderRadius: BorderRadius.all(Radius.circular(10)))),
             ),
-
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +64,7 @@ class PanjangPage extends StatelessWidget {
                         foregroundColor: Colors.white, // text color
                         backgroundColor: Colors.redAccent),
                     onPressed: () {
-                      _panjangController.hitungLuas();
+                      _lingkaranController.hitungLuas();
                     },
                     child: Text("Hitung Luas")),
               ),
@@ -98,16 +73,16 @@ class PanjangPage extends StatelessWidget {
                       foregroundColor: Colors.white, // text color
                       backgroundColor: Colors.blueAccent),
                   onPressed: () {
-                    _panjangController.hitungKeliling();
+                    _lingkaranController.hitungKeliling();
                   },
                   child: Text("Hitung Keliling")),
             ],
           ),
           Obx(
-            () => Text(
-              _panjangController.hasil.value,
+                () => Text(
+              _lingkaranController.hasil.value,
               style: TextStyle(
-                color: _panjangController.isHitungLuas.value
+                color: _lingkaranController.isHitungLuas.value
                     ? Colors.blue
                     : Colors.deepPurpleAccent,
               ),
